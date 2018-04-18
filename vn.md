@@ -39,7 +39,7 @@ Bạn có mệt mỏi với các tập tin được biên dịch (như `.pyc`) x
 
 ## 3\. Ai đã làm sai code của tôi?
 
-Đó là bản năng tự nhiên của con người để đổ lỗi cho người khác khi có điều gì đó không ổn. Nếu máy chủ của bạn bị hỏng, rất dễ để tìm ra thủ phạm - chỉ cần thực hiện lệnh `git blame`. Lệnh này cho bạn thấy tác giả của mỗi dòng trong một tệp tin, commit trong lần thay đổi cuối cùng của dòng đó và thời gian của commit.
+Đó là bản năng tự nhiên của con người để đổ lỗi cho người khác khi có điều gì đó không ổn. Nếu máy chủ sản phầm của bạn bị hỏng, rất dễ để tìm ra thủ phạm - chỉ cần thực hiện lệnh `git blame`. Lệnh này cho bạn thấy tác giả của mỗi dòng trong một tệp tin, commit trong lần thay đổi cuối cùng của dòng đó và thời gian của commit.
 
     
     git blame [file_name]
@@ -50,9 +50,9 @@ Và trong ảnh chụp màn hình bên dưới, bạn có thể thấy lệnh n�
 
 ![git blame on the ATutor repository][4]
 
-## 4\. Xem qua lịch sử của Repository
+## 4\. Xem lại lịch sử của Repository
 
-Chúng tôi đã xem xét việc sử dụng `git log` trong một hướng dẫn trước đó, tuy nhiên, có ba lựa chọn mà bạn cần biết.
+Chúng tôi đã xem xét việc sử dụng `git log` trong một hướng dẫn trước đó, tuy nhiên, có ba tùy chọn mà bạn nên biết.
 
 
 * `\--oneline` – Nén thông tin hiển thị bên cạnh mỗi commit với một commit tối giản và thông báo commit, tất cả được hiển thị trong một dòng đơn.
@@ -64,9 +64,9 @@ Dưới đây là những gì kết hợp các tùy chọn lại như sau:
 ![Use of git log with all, graph and oneline][5]
 
 ## 5\. Không bao giờ mất Theo dõi một commit
-Hãy nói rằng bạn đã commit một điều gì đó mà bạn không muốn và dẫn tới cần thực hiện hard reset để trở lại trạng thái trước của bạn. Sau đó, bạn nhận ra rằng bạn đã mất một số thông tin khác trong tiến trình và muốn khôi phục lại hoặc ít nhất là xem nó. Lệnh `git reflog` sẽ giúp bạn.
+Giả sử bạn đã commit một điều gì đó mà bạn không muốn và dẫn tới cần thực hiện hard reset để trở lại trạng thái trước của bạn. Sau đó, bạn nhận ra rằng bạn đã mất một số thông tin khác trong tiến trình và muốn khôi phục lại hoặc ít nhất là xem nó. Lệnh `git reflog` sẽ giúp bạn.
 
-Một lệnh `git log` cơ bản cho bạn thấy commit mới nhất, commit cha của nó, commit cấp 3 của nó, vân vân. Tuy nhiên, `git reflog` là một danh sách các commit head trỏ đến. Hãy nhớ rằng nó chỉ trên hệ thống local của bạn; chứ không phải là một phần của kho và không bao gồm push hoặc merge.
+Một lệnh `git log` cơ bản cho bạn thấy commit mới nhất, trước đó, trước đó nữa, vân vân. Tuy nhiên, `git reflog` là một danh sách các commit head trỏ đến. Hãy nhớ rằng nó chỉ trên hệ thống local của bạn; chứ không phải là một phần của kho và không bao gồm push hoặc merge.
 
 Nếu tôi chạy `git log`, tôi nhận được các commit là một phần của kho dữ liệu của tôi:
 
@@ -81,7 +81,7 @@ Tuy nhiên, lệnh `git reflog` hiển thị một commit (`b1b0ee9 - HEAD @ (4)
 
 Nói chung, thực tế để thực hiện các commit dựa trên tính năng, nghĩa là mỗi commit phải đại diện cho một tính năng hoặc một lỗi được sửa. Hãy xem xét điều gì sẽ xảy ra nếu bạn đã sửa hai lỗi hoặc thêm nhiều tính năng mà không thực hiện commit thay đổi. Trong trường hợp như vậy, bạn có thể đặt những thay đổi trong một commit duy nhất. Nhưng có một cách tốt hơn: stage các tập tin riêng lẻ và commit chúng một cách riêng biệt.
 
-Giả sử bạn đã thực hiện nhiều thay đổi cho một tệp và muốn chúng xuất hiện trong các commit riêng biệt. Trong trường hợp đó, chúng ta thêm các tập tin bằng tiền tố `-p` trogn lệnh add của chúng ta.
+Giả sử bạn đã thực hiện nhiều thay đổi cho một tệp và muốn chúng xuất hiện trong các commit riêng biệt. Trong trường hợp đó, chúng ta thêm các tập tin bằng tiền tố `-p` trong lệnh add của chúng ta.
 
     
     
@@ -115,9 +115,9 @@ Như bạn thấy, chúng tôi đã thêm vào dòng đầu tiên và thứ ba v
 
 ![Repository after selectively adding a file][11]
 
-## 7\. Squash Nhiều cam kết
+## 7\. Squash Nhiều commit
 
-Khi bạn submit code của mình để review và tạo ra một pull request (thường xảy ra trong các dự án mã nguồn mở), bạn có thể được yêu cầu thay đổi mã của mình trước khi nó được chấp nhận. Bạn thực hiện thay đổi, chỉ để được yêu cầu thay đổi lại nó trong lần xem xét tiếp theo. Trước khi bạn biết nó, bạn có một vài commit thêm. Bạn có thể ghi đè chúng bằng cách sử dụng lệnh `rebase`.
+Khi bạn submit code của mình để review và tạo ra một pull request (thường xảy ra trong các dự án mã nguồn mở), bạn có thể được yêu cầu thay đổi code của mình trước khi nó được chấp nhận. Bạn thực hiện thay đổi, chỉ để được yêu cầu thay đổi lại nó trong lần xem xét tiếp theo. Trước khi bạn biết nó, bạn có một vài commit thêm. Bạn có thể ghi đè chúng bằng cách sử dụng lệnh `rebase`.
 
     
     git rebase -i HEAD~[number_of_commits]
