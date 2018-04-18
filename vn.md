@@ -6,9 +6,9 @@ Gần đây, chúng tôi đã xuất bản một vài hướng dẫn để giúp
 
 _Lưu ý: Một số lệnh trong bài viết này bao gồm cả một phần của lệnh trong dấu ngoặc vuông (ví dụ: git add -p [file_name]). Trong những ví dụ này, bạn sẽ chèn số, định danh cần thiết mà không có dấu ngoặc vuông_
 
-## 1\. Git tự động hoàn thành
+## 1\. Tự động hoàn thành câu lệnh Git
 
-Nếu bạn chạy lệnh Git thông qua dòng lệnh, đó là một công việc nhàm chán khi phải gõ từng cậu lệnh bằng tay. Để giúp đỡ việc này, bạn có thể kích hoạt tự động hoàn thành lệnh Git chỉ trong vòng vài phút.
+Nếu bạn chạy lệnh Git thông qua dòng lệnh, đó là một công việc nhàm chán khi phải gõ từng câu lệnh bằng tay. Để giúp đỡ việc này, bạn có thể kích hoạt tự động hoàn thành lệnh Git chỉ trong vòng vài phút.
 
 Để có được kịch bản, hãy chạy lệnh sau trong một hệ thống Unix
 
@@ -46,7 +46,7 @@ Bạn có mệt mỏi với các tập tin được biên dịch (như `.pyc`) x
 
 ![git blame demonstration][3]
 
-Và trong ảnh chụp màn hình bên dưới, bạn có thể thấy lệnh này sẽ trông như thế nào trên một kho lưu trữ lớn hơn:
+Và trong ảnh chụp màn hình bên dưới, bạn có thể thấy lệnh này sẽ trông như thế nào trên một repository lớn hơn:
 
 ![git blame on the ATutor repository][4]
 
@@ -56,19 +56,19 @@ Chúng tôi đã xem xét việc sử dụng `git log` trong một hướng dẫ
 
 
 * `\--oneline` – Nén thông tin hiển thị bên cạnh mỗi commit với một commit tối giản và thông báo commit, tất cả được hiển thị trong một dòng đơn.
-* `\--graph` – Tùy chọn này rút ra một biểu diễn đồ họa dựa trên văn bản của lịch sử ở phía bên tay trái của đầu ra. Không sử dụng lệnh này nếu bạn đang xem lịch sử cho nhánh đơn lẻ
+* `\--graph` – Tùy chọn này rút ra một biểu đồ dựa trên văn bản của lịch sử ở phía bên tay trái của đầu ra. Không sử dụng lệnh này nếu bạn đang xem lịch sử cho nhánh đơn lẻ
 * `\--all` – Hiển thị lịch sử của tất cả các nhánh.
 
 Dưới đây là những gì kết hợp các tùy chọn lại như sau:
 
 ![Use of git log with all, graph and oneline][5]
 
-## 5\. Không bao giờ mất Theo dõi một commit
-Hãy nói rằng bạn đã commit một điều gì đó mà bạn không muốn và dẫn tới cần thực hiện hard reset để trở lại trạng thái trước của bạn. Sau đó, bạn nhận ra rằng bạn đã mất một số thông tin khác trong tiến trình và muốn khôi phục lại hoặc ít nhất là xem nó. Lệnh `git reflog` sẽ giúp bạn.
+## 5\. Không bao giờ mất dấu một commit
+Hãy nói rằng bạn đã commit một điều gì đó mà bạn không muốn và dẫn tới cần thực hiện hard reset để trở lại trạng thái trước của bạn. Sau đó, bạn nhận ra rằng bạn đã mất một số thông tin khác trong quá trình và muốn khôi phục lại hoặc ít nhất là xem nó. Lệnh `git reflog` sẽ giúp bạn.
 
-Một lệnh `git log` cơ bản cho bạn thấy commit mới nhất, commit cha của nó, commit cấp 3 của nó, vân vân. Tuy nhiên, `git reflog` là một danh sách các commit head trỏ đến. Hãy nhớ rằng nó chỉ trên hệ thống local của bạn; chứ không phải là một phần của kho và không bao gồm push hoặc merge.
+Một lệnh `git log` cơ bản cho bạn thấy commit mới nhất, commit cha của nó, commit cấp 3 của nó, vân vân. Tuy nhiên, `git reflog` là một danh sách các commit head trỏ đến. Hãy nhớ rằng nó chỉ trên hệ thống local của bạn; chứ không phải là một phần của repository và không bao gồm push hoặc merge.
 
-Nếu tôi chạy `git log`, tôi nhận được các commit là một phần của kho dữ liệu của tôi:
+Nếu tôi chạy `git log`, tôi nhận được các commit là một phần trong repository của tôi:
 
 
 ![Project history][6]
@@ -92,7 +92,7 @@ Chúng ta hãy cùng nhau chứng minh điều đó. Tôi đã thêm ba dòng m�
 
 ![Changes in repo][8]
 
-Và chúng ta hãy xem những gì xảy ra khi chúng tôi tiền tố `-p` trong lệnh `add`.
+Và chúng ta hãy xem những gì xảy ra khi chúng tôi thêm tiền tố `-p` trong lệnh `add`.
 
 
 ![Running add with -p][9]
@@ -115,9 +115,9 @@ Như bạn thấy, chúng tôi đã thêm vào dòng đầu tiên và thứ ba v
 
 ![Repository after selectively adding a file][11]
 
-## 7\. Squash Nhiều cam kết
+## 7\. Squash Nhiều Commit
 
-Khi bạn submit code của mình để review và tạo ra một pull request (thường xảy ra trong các dự án mã nguồn mở), bạn có thể được yêu cầu thay đổi mã của mình trước khi nó được chấp nhận. Bạn thực hiện thay đổi, chỉ để được yêu cầu thay đổi lại nó trong lần xem xét tiếp theo. Trước khi bạn biết nó, bạn có một vài commit thêm. Bạn có thể ghi đè chúng bằng cách sử dụng lệnh `rebase`.
+Khi bạn submit code của mình để review và tạo ra một pull request (thường gặp trong các dự án mã nguồn mở), bạn có thể được yêu cầu thay đổi mã của mình trước khi nó được chấp nhận. Bạn thực hiện thay đổi, chỉ để được yêu cầu thay đổi lại nó trong lần xem xét tiếp theo. Trước khi bạn biết nó, bạn có một vài commit thêm. Bạn có thể ghi đè chúng bằng cách sử dụng lệnh `rebase`.
 
     
     git rebase -i HEAD~[number_of_commits]
@@ -132,7 +132,7 @@ Khi chạy lệnh này, bạn sẽ được đưa đến một giao diện tươ
 
 ![Git squash interactive][12]
 
-Sau đó bạn được yêu cầu cung cấp thông báo commit cho commit mới. Quá trình này chủ yếu viết lại lịch sử commit của bạn.
+Sau đó bạn được yêu cầu cung cấp thông báo commit cho commit mới. Quá trình này bản chất là viết lại lịch sử commit của bạn.
 
 ![Adding a commit message][13]
 
